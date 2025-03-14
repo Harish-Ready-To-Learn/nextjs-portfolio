@@ -1,17 +1,30 @@
 "use client";
 
 import Image from 'next/image'
-import React from 'react'
+import React, { useEffect } from 'react'
 import profile_img from '@/public/profile_img.jpg'
 import { motion } from 'framer-motion'
 import Link from 'next/link';
 import { BsArrowRight, BsLinkedin } from 'react-icons/bs';
 import { HiDownload } from 'react-icons/hi';
 import { FaGithubSquare } from 'react-icons/fa';
+import { useInView } from 'react-intersection-observer';
+import { useActiveSectionContext } from '@/context/active-section-context';
 
 export default function Intro() {
+
+    const { ref, inView } = useInView();
+    const { setActiveSection } = useActiveSectionContext()
+
+    useEffect(() => {
+        if (inView) {
+            setActiveSection("Home")
+        }
+    }, [inView, setActiveSection])
+
     return (
-        <section className="mb-28 max-w-[50rem] text-center sm:mb-0">
+        <section ref={ref} className="mb-28 max-w-[50rem] text-center sm:mb-0 scroll-mt-[100rem]"
+            id="home">
             <div className="flex items-center justify-center">
                 <div className='relative'>
                     <motion.div
@@ -38,7 +51,7 @@ export default function Intro() {
                 </div>
             </div>
             <motion.h1
-                className="mb-10 mt-4 px-4 text-2xl font-medium !leading-[1.5] sm:text-4xl"
+                className="mb-10 mt-4 px-4 text-xl sm:text-2xl md:text-3xl lg:text-4xl font-medium !leading-[1.5]"
                 initial={{ opacity: 0, y: 100 }}
                 animate={{ opacity: 1, y: 0 }}
             >
@@ -46,8 +59,8 @@ export default function Intro() {
                 <span className="font-bold">front-end developer</span> with{" "}
                 <span className="font-bold">3 years</span> of experience. I enjoy
                 building <span className="italic">mobile apps & web sites</span>. My focus is{" "}
-                <span className="underline"> React-Native</span> and {" "}
-                <span className="underline">React (Next.js) </span>.
+                <span className="underline">React Native</span> and{" "}
+                <span className="underline">React (Next.js)</span>.
             </motion.h1>
             <motion.div className='flex justify-center items-center gap-3 px-4  font-medium flex-col sm:flex-row'
                 initial={{ opacity: 0, y: 100 }}
