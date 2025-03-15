@@ -82,6 +82,7 @@ export const projectsData = [
         tags: ["React-Native", "TypeScript", "Tailwind", "Figma", "Firebase-Notiifications", "O-Auth"],
         imageUrl: wordanalyticsImg,
     },
+
 ] as const;
 
 export const skillsData = [

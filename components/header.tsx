@@ -8,7 +8,7 @@ import { useActiveSectionContext } from "@/context/active-section-context";
 
 function Header() {
 
-    const { activeSection, setActiveSection } = useActiveSectionContext()
+    const { activeSection, setActiveSection, setTimeOfLastClick } = useActiveSectionContext()
 
 
     return (
@@ -42,7 +42,10 @@ function Header() {
                         justify-center"
                             initial={{ y: -100, opacity: 0 }}
                             animate={{ y: 0, opacity: 1 }}
-                            onClick={() => setActiveSection(link.name)}
+                            onClick={() => {
+                                setActiveSection(link.name)
+                                setTimeOfLastClick(Date.now())
+                            }}
                         >
                             <Link
                                 href={link.hash}
